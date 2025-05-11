@@ -5,8 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
-export const MediaCard = ({ image, title, category, course }) => {
+export const MediaCard = ({ id, image, title, category, course }) => {
+    const navigate = useNavigate();
+
+    const navigateToPost = () => {
+        navigate(`/post/${id}`);
+    }
   return (
     <Card sx={{ width: 345 }}>
       <CardMedia
@@ -23,7 +29,12 @@ export const MediaCard = ({ image, title, category, course }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Ver</Button>
+        <Button 
+            size="small"
+            onClick={navigateToPost}
+        >
+            Ver
+        </Button>
       </CardActions>
     </Card>
   );

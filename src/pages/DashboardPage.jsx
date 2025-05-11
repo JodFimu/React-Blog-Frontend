@@ -17,7 +17,6 @@ export const DashboardPage = () => {
 
   return (
     <div className="dashboard-container">
-        <div className='dashboard-background'/>
         <SearchAppBar onSearch={setSearch} />
  
           <div className='dashboard-content'>
@@ -28,6 +27,7 @@ export const DashboardPage = () => {
                     filteredPosts.map((post) => (
                         <MediaCard
                             key={post.pid}
+                            id={post.pid}
                             image={post.img}
                             title={post.title}
                             category={post.category}

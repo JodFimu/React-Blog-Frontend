@@ -31,6 +31,7 @@ export const CoursePage = () => {
                         posts && posts.map((post) => (
                             <MediaCard
                                 key={post.pid}
+                                id={post.pid}
                                 image={post.img}
                                 title={post.title}
                                 category={post.category}

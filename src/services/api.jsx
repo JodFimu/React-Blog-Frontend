@@ -27,3 +27,25 @@ export const getByCourse = async (course) => {
         }
     }
 }
+
+export const getById = async (id) => {
+    try {
+        return await apiClient.get(`/post/${id}`);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const commentPost = async (id, comment) => {
+    try {
+        return await apiClient.put(`/comment/${id}`, comment);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

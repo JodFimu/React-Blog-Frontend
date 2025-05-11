@@ -1,10 +1,11 @@
 import toast from 'react-hot-toast';
 import { useState, useEffect } from 'react';
-import {getPost as postReq, getByCourse as courseReq} from '../../services/api';
+import {getPost as postReq, getByCourse as courseReq, getById, commentPost} from '../../services/api';
 
 export const usePost = () => {
     const [posts, setPosts] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [post, setPost] = useState(null);
     
     const postData = async () => {
         setLoading(true);
@@ -18,6 +19,7 @@ export const usePost = () => {
         }
         
     };
+
     const postDataByCourse = async (course) => {
         setLoading(true);
         
@@ -30,6 +32,30 @@ export const usePost = () => {
         }
         
     };
+
+    const postDataById = async (id) => {
+        setLoading(true);
+        try {
+            const response = await getById(id);
+            setPost(response.data.post);
+            setLoading(false); 
+        } catch (error) {
+            toast.error("Error al cargar los posts " + error.message);
+        }
+        
+    };
+
+    const comment = async (id, comment) => {
+        setLoading(true);
+        try {
+            const response = await commentPost(id, comment);
+            setPost(response.data.post);
+            setLoading(false); 
+        } catch (error) {
+            toast.error("Error al agregar el comentario " + error.message);
+        }
+        
+    };
     
     useEffect(() => {
         postData();
@@ -39,6 +65,9 @@ export const usePost = () => {
     return { 
         posts,
         loading,
-        postDataByCourse
+        postDataByCourse,
+        postDataById,
+        post,
+        comment
     };
 }
