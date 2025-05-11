@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -9,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Drawer from '@mui/material/Drawer'; 
+import { useNavigate } from 'react-router-dom';
 
 import {NestedList} from './NavBarMenu';
 
@@ -54,11 +54,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const SearchAppBar = () => {
+export const SearchAppBar = ({onSearch}) => {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/');
+    }
 
     const handleDrawerOpen = () => setOpen(true);
     const handleDrawerClose = () => setOpen(false);
+
+    const handleInputChange = (e) => {
+    if (onSearch) onSearch(e.target.value);
+  };
   return (
     <>
         <AppBar position="fixed" sx={{ width: '100%', bgcolor:"#44749d" }}>
@@ -77,7 +86,15 @@ export const SearchAppBar = () => {
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color:"#ffffff" }}
+                sx={{ flexGrow: 1,
+                  display: { xs: 'none', sm: 'block' },
+                  color: "#ffffff",
+                  cursor: "pointer",
+                  '&:hover': {
+                    color: '#c6d4e1'
+                  }
+                }}
+                onClick={handleClick}
                 >
                 Blog 
             </Typography>
@@ -88,6 +105,8 @@ export const SearchAppBar = () => {
                 <StyledInputBase
                     placeholder="Search…"
                     inputProps={{ 'aria-label': 'search' }}
+                    onChange={handleInputChange}
+
                 />
             </Search>
             

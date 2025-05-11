@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -9,7 +10,7 @@ import imgTall from '../assets/code_icon-icons.com_73620.png'
 import imgPractica from '../assets/ai_artificial_intelligence_robot_chip_brain_technology_icon_179495.png'
 
 export const  NestedList = () =>{
-
+  const navigate = useNavigate();
   return (
     <List
       sx={{ 
@@ -34,23 +35,27 @@ export const  NestedList = () =>{
         </ListSubheader>
       }
     >
-      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}>
+      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}
+        onClick={() => navigate('/course/Tecnologia')} >
         <ListItemIcon>
           <img src={imgTec} alt="" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         </ListItemIcon>
         <ListItemText primary="Tecnologia" />
       </ListItemButton>
-      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}>
+      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}
+              onClick={() => navigate('/course/Taller')} >
         <ListItemIcon>
           <img src={imgTall} alt="" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         </ListItemIcon>
         <ListItemText primary="Taller" />
       </ListItemButton>
-      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}>
+      <ListItemButton sx={{ color: '#fff', '&:hover': { bgcolor: '#35516d' } }}        
+      onClick={() => navigate('/course/Practica Supervisada')} >
+
         <ListItemIcon>
           <img src={imgPractica} alt="" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         </ListItemIcon>
-        <ListItemText primary="Practica supervisada" />
+        <ListItemText primary="Practica Supervisada" />
       </ListItemButton>
     </List>
   );

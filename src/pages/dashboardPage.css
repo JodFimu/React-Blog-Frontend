@@ -21,3 +21,12 @@
   background-position: center;
   opacity: 0.1;
 }
+
+.dashboard-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;           
+  flex-wrap: wrap;   
+  overflow-x: auto;    
+  padding: 16px 0;
+}
