@@ -1,12 +1,15 @@
-import './App.css'
+import React from "react";
+import { useRoutes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { routes } from "./routes.jsx";
 
-function App() {
+export const App = () => {
+  let element = useRoutes(routes);
 
   return (
-    <>
-      
-    </>
-  )
-}
-
-export default App
+    <div>
+      {element}
+      <Toaster position="top-center" reverseOrder={false} />
+    </div>
+  );
+};
